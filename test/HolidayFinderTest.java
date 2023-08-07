@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import util.HolidayFinder;
 
+/**
+ * Test class for {@link HolidayFinder}
+ */
 public class HolidayFinderTest {
 	@Test
 	void testJulyFourthWeekday() {

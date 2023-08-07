@@ -1,15 +1,21 @@
 package models;
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
+/**
+ * Class that details the pricing information associated with a tool type.
+ */
 public class PricingInfo {
 	private String toolType;
-	private double dailyCharge;
+	private BigDecimal dailyCharge;
 	private boolean hasWeekdayCharge;
 	private boolean hasWeekendCharge;
 	private boolean hasHolidayCharge;
 	
 	public PricingInfo(
 			String toolType, 
-			double dailyCharge, 
+			BigDecimal dailyCharge, 
 			boolean hasWeekdayCharge, 
 			boolean hasWeekendCharge,
 			boolean hasHolidayCharge
@@ -25,7 +31,7 @@ public class PricingInfo {
 		return toolType;
 	}
 
-	public double getDailyCharge() {
+	public BigDecimal getDailyCharge() {
 		return dailyCharge;
 	}
 
@@ -40,5 +46,31 @@ public class PricingInfo {
 	public boolean hasHolidayCharge() {
 		return hasHolidayCharge;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "PricingInfo [toolType=" + toolType + ", dailyCharge=" + dailyCharge + ", hasWeekdayCharge="
+				+ hasWeekdayCharge + ", hasWeekendCharge=" + hasWeekendCharge + ", hasHolidayCharge=" + hasHolidayCharge
+				+ "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dailyCharge, hasHolidayCharge, hasWeekdayCharge, hasWeekendCharge, toolType);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PricingInfo other = (PricingInfo) obj;
+		return Objects.equals(dailyCharge, other.dailyCharge) && hasHolidayCharge == other.hasHolidayCharge
+				&& hasWeekdayCharge == other.hasWeekdayCharge && hasWeekendCharge == other.hasWeekendCharge
+				&& Objects.equals(toolType, other.toolType);
+	}
+
 }

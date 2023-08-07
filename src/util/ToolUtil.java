@@ -1,5 +1,6 @@
 package util;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,9 +31,29 @@ public class ToolUtil {
 	 */
 	public static Map<String, PricingInfo> generatePricingInfoMap() {
 		Map<String, PricingInfo> pricingInfoMap = new HashMap<String, PricingInfo>();
-		pricingInfoMap.put("Ladder", new PricingInfo("Ladder", 1.99, true, true, false));
-		pricingInfoMap.put("Chainsaw", new PricingInfo("Chainsaw", 1.49, true, false, true));
-		pricingInfoMap.put("Jackhammer", new PricingInfo("Jackhammer", 2.99, true, false, false));
+		pricingInfoMap.put("Ladder", new PricingInfo("Ladder", BigDecimal.valueOf(1.99), true, true, false));
+		pricingInfoMap.put("Chainsaw", new PricingInfo("Chainsaw", BigDecimal.valueOf(1.49), true, false, true));
+		pricingInfoMap.put("Jackhammer", new PricingInfo("Jackhammer", BigDecimal.valueOf(2.99), true, false, false));
 		return pricingInfoMap;
+	}
+	
+	/**
+	 * Finds a specific tool object given the tool code
+	 * @param toolCode: the code of the tool
+	 * @return an object containing the rest of the tool's information
+	 */
+	public static Tool findTool(ToolCode toolCode) {
+		Map<ToolCode, Tool> toolMap = generateToolMap();
+		return toolMap.get(toolCode);
+	}
+	
+	/**
+	 * Finds a specific pricing information object for a given tool type
+	 * @param toolType: the type of the tool
+	 * @return an object containing the pricing information for that specific tool type
+	 */
+	public static PricingInfo findPricingInfo(String toolType) {
+		Map<String, PricingInfo> pricingInfoMap = generatePricingInfoMap();
+		return pricingInfoMap.get(toolType);
 	}
 }
